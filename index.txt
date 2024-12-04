@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0088cc" />
+    <title>Presentation Template Selector</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .input-field input,
+        .input-field textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .catalog-container {
+            overflow-x: scroll !important;
+            white-space: nowrap;
+            padding-block: 20px;
+            height: max-content;
+        }
+
+        .catalog-container .catalog {
+            display: flex;
+            gap: 15px;
+        }
+
+        .catalog-container::-webkit-scrollbar {
+            height: 8px; /* Height of the scrollbar */
+        }
+
+        .catalog-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        .catalog-container::-webkit-scrollbar-thumb:hover {
+            background-color: #aaa;
+        }
+
+        .catalog .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 170px;
+            padding: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+
+        .catalog-container .card.selected {
+            border: 1px solid #0088cc;
+            box-shadow: 0 4px 8px rgba(0, 136, 204, 0.5);
+        }
+
+        .catalog-container p {
+            margin-block: 10px;
+        }
+
+        .catalog-container img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+        }
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .radio-group label {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group input {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #005f8d;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Presentation Generator</h2>
+
+    <!-- Topic Input -->
+    <div class="input-field">
+        <input type="text" id="topic" placeholder="Enter presentation topic" required />
+    </div>
+
+    <!-- Additional Information -->
+    <div class="input-field">
+        <textarea id="additionalInfo" rows="3" placeholder="Enter additional information (optional)"></textarea>
+    </div>
+
+    <!-- Section Title -->
+    <h3>Prezentatsya dizaynini tanlang</h3>
+
+    <!-- Catalog Section -->
+    <div class="catalog-container" id="catalog">
+        <div class="catalog">
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 1" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 2" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 3" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 4" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 5" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 6" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 7" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 8" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 9" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+            <div class="card">
+                <img src="../thumbnails-ppt/biome-1.png" alt="Design 10" data-design="biome-1" />
+                <p>Biome</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Radio Buttons -->
+    <div class="radio-group">
+        <label><input type="radio" name="type" value="standard" checked /> Standard</label>
+        <label><input type="radio" name="type" value="premium" /> Premium</label>
+    </div>
+
+    <!-- Submit Button -->
+    <button id="submitButton">Submit</button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const catalog = document.getElementById("catalog");
+
+        // Add click event listener to the catalog container
+        catalog.addEventListener("click", (event) => {
+            let target = event.target;
+
+            if (!target.classList.contains("card")) {
+                target = target.closest(".card");
+            }
+
+            // Check if the clicked element is an image
+            if (target.classList.contains("card")) {
+                // Remove 'selected' class from any previously selected image
+                const previouslySelected = catalog.querySelector(".selected");
+                if (previouslySelected) {
+                    previouslySelected.classList.remove("selected");
+                }
+
+                // Add 'selected' class to the clicked image
+                target.classList.add("selected");
+
+                // Optional: Log selected image's design identifier
+                console.log("Selected design:", target.dataset.design);
+            }
+        });
+    });
+
+    document.getElementById("submitButton").addEventListener("click", function () {
+        const topic = document.getElementById("topic").value;
+        const additionalInfo = document.getElementById("additionalInfo").value;
+        const selectedDesign = document.querySelector(".catalog .card.selected img")?.dataset.design || null;
+        const type = document.querySelector('input[name="type"]:checked').value;
+
+        const requestData = {
+            topic,
+            additionalInfo,
+            selectedDesign,
+            type,
+        };
+
+        console.log(JSON.stringify(requestData, null, 2));
+
+        alert("Data logged to console!");
+    });
+
+    // Catalog selection logic
+    document.getElementById("catalog").addEventListener("click", function (e) {
+        if (e.target.classList.contains("card")) {
+            document.querySelectorAll(".catalog .card").forEach((img) => img.classList.remove("selected"));
+            e.target.classList.add("selected");
+        }
+    });
+</script>
+</body>
+</html>
