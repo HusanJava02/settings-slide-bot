@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0088cc" />
@@ -253,9 +254,13 @@
             type,
         };
 
-        console.log(JSON.stringify(requestData, null, 2));
+        const tg = window.Telegram.WebApp;
 
-        alert("Data logged to console!");
+// Send data to the bot
+            tg.sendData(JSON.stringify(requestData));
+        // console.log(JSON.stringify(requestData, null, 2));
+
+        // alert("Data logged to console!");
     });
 
     // Catalog selection logic
