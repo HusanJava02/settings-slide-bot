@@ -241,12 +241,71 @@
         });
     });
 
-    document.getElementById("submitButton").addEventListener("click", function () {
-        const topic = document.getElementById("topic").value;
-        const additionalInfo = document.getElementById("additionalInfo").value;
-        const selectedDesign = document.querySelector(".catalog .card.selected img")?.dataset.design || null;
-        const type = document.querySelector('input[name="type"]:checked').value;
+//     document.getElementById("submitButton").addEventListener("click", function () {
+//         const topic = document.getElementById("topic").value;
+//         const additionalInfo = document.getElementById("additionalInfo").value;
+//         const selectedDesign = document.querySelector(".catalog .card.selected img")?.dataset.design || null;
+//         const type = document.querySelector('input[name="type"]:checked').value;
 
+//         const requestData = {
+//             topic,
+//             additionalInfo,
+//             selectedDesign,
+//             type,
+//         };
+
+//         const tg = window.Telegram.WebApp;
+
+// // Send data to the bot
+//             tg.sendData(JSON.stringify(requestData));
+//         // console.log(JSON.stringify(requestData, null, 2));
+
+//         // alert("Data logged to console!");
+//     });
+
+    document.getElementById("submitButton").addEventListener("click", function () {
+        const tg = window.Telegram.WebApp;
+        // Get topic value
+        const topic = document.getElementById("topic").value.trim();
+
+        // Get additional info value
+        const additionalInfo = document.getElementById("additionalInfo").value.trim();
+
+        // Get selected design from catalog
+        const selectedDesignElement = document.querySelector(".catalog .card.selected img");
+        const selectedDesign = selectedDesignElement ? selectedDesignElement.dataset.design : null;
+
+        // Get selected type from radio buttons
+        const typeRadio = document.querySelector('input[name="type"]:checked');
+        const type = typeRadio ? typeRadio.value : null;
+
+        // Validation for topic input
+        if (!topic) {
+            alert("Please enter a topic for the presentation.");
+            document.getElementById("topic").style.borderColor = 'red';
+            return;
+        } else {
+            document.getElementById("topic").style.borderColor = ''; // Reset border
+        }
+
+        // Validation for selected design
+        if (!selectedDesign) {
+            tg.showAlert("Iltmos avval ozingizga yooqan shablonni tanlang");
+            const allDesignCards = document.querySelectorAll(".catalog .card");
+            allDesignCards.forEach(card => card.style.borderColor = 'red');
+            return;
+        } else {
+            const allDesignCards = document.querySelectorAll(".catalog .card");
+            allDesignCards.forEach(card => card.style.borderColor = ''); // Reset border
+        }
+
+        // Validation for type selection
+        if (!type) {
+            tg.showAlert("Siz qaysi formatni ishlatishni tanlamadingiz, iltimos premium yoki standart tarifni tanlang");
+            return;
+        }
+
+        // Create the request data object
         const requestData = {
             topic,
             additionalInfo,
@@ -254,14 +313,16 @@
             type,
         };
 
-        const tg = window.Telegram.WebApp;
+        
 
-// Send data to the bot
-            tg.sendData(JSON.stringify(requestData));
+            // Send data to the bot
+        tg.sendData(JSON.stringify(requestData));
         // console.log(JSON.stringify(requestData, null, 2));
 
         // alert("Data logged to console!");
+
     });
+
 
     // Catalog selection logic
     document.getElementById("catalog").addEventListener("click", function (e) {
