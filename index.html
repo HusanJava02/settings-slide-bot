@@ -42,7 +42,7 @@
         }
 
         .input-field input,
-        .input-field textarea {
+        .input-field textarea, .input-field select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -175,6 +175,22 @@
         </label>
     </div>
 
+    <!-- Language Selector -->
+    <div class="input-field">
+<!--        <label for="language" class="label">Tilni tanlang</label>-->
+        <select id="language" name="language" required>
+            <option value="" disabled selected>Tilni tanlang...</option>
+            <option value="UZ" selected>O'zbekcha</option>
+            <option value="EN">Inglizcha</option>
+            <option value="RU">Ruscha</option>
+            <option value="ES">Ispan tili</option>
+            <option value="DE">Nemis tili</option>
+        </select>
+        <span style="font-size: 12px; color: #888;">
+        Prezentatsiya tili tanlang.
+    </span>
+    </div>
+
     <!-- Section Title -->
     <h3>Prezentatsya dizaynini tanlang</h3>
 
@@ -226,6 +242,7 @@
         <label><input type="radio" name="type" value="premium" /> Premium 5000 so'm</label>
     </div>
 
+
     <!-- Submit Button -->
     <button id="submitButton">Submit</button>
 </div>
@@ -261,7 +278,7 @@
 
     if (window.Telegram && Telegram.WebApp) {
         // Access the user data
-        const user = Telegram.WebApp.initDataUnsafe.user;
+        const user = Telegram.WebApp.WebAppUser
 
         // Check if user data is available
         if (user) {
@@ -326,7 +343,6 @@
             type,
         };
 
-        
 
             // Send data to the bot
         tg.sendData(JSON.stringify(requestData));
