@@ -142,15 +142,37 @@
 <body>
 <div class="container">
     <h2>Presentation Generator</h2>
-
-    <!-- Topic Input -->
     <div class="input-field">
-        <input type="text" id="topic" placeholder="Enter presentation topic" required />
+        <input
+                type="text"
+                id="topic"
+                placeholder="Prezentatsiya qaysi mavzuda bo'lsin?"
+                required
+        />
+        <label for="topic" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">
+            Ushbu maydonda prezentatsiya mavzusini kiriting.
+        </label>
     </div>
+    <div class="input-field">
+        <input
+                type="text"
+                id="author-name"
+                placeholder="Kim tomonidan yaratildi?"
+                required
+        />
+        <label for="topic" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">
+            Ushbu maydonda ism yoki familiyangiz bo'lishi mumkin. Yoki telegram dagi ismingiz ni ishlatiladi
+        </label>
+    </div>
+
 
     <!-- Additional Information -->
     <div class="input-field">
         <textarea id="additionalInfo" rows="3" placeholder="Enter additional information (optional)"></textarea>
+        <label for="topic" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">
+            Ushbu maydonda taqdimotni boyitish uchun o'zingizning ma'lumotlarini tashlashingiz mumkin, Yoki qo'shimcha
+            instruksiya berish orqali mukammal taqdimot yaratishingiz mumkin.
+        </label>
     </div>
 
     <!-- Section Title -->
@@ -200,8 +222,8 @@
 
     <!-- Radio Buttons -->
     <div class="radio-group">
-        <label><input type="radio" name="type" value="standard" checked /> Standard</label>
-        <label><input type="radio" name="type" value="premium" /> Premium</label>
+        <label><input type="radio" name="type" value="standard" checked /> Standard 3000 so'm</label>
+        <label><input type="radio" name="type" value="premium" /> Premium 5000 so'm</label>
     </div>
 
     <!-- Submit Button -->
@@ -237,27 +259,22 @@
         });
     });
 
-//     document.getElementById("submitButton").addEventListener("click", function () {
-//         const topic = document.getElementById("topic").value;
-//         const additionalInfo = document.getElementById("additionalInfo").value;
-//         const selectedDesign = document.querySelector(".catalog .card.selected img")?.dataset.design || null;
-//         const type = document.querySelector('input[name="type"]:checked').value;
+    if (window.Telegram && Telegram.WebApp) {
+        // Access the user data
+        const user = Telegram.WebApp.initDataUnsafe.user;
 
-//         const requestData = {
-//             topic,
-//             additionalInfo,
-//             selectedDesign,
-//             type,
-//         };
+        // Check if user data is available
+        if (user) {
+            const fullName = `${user.first_name || ''} ${user.last_name || ''}`.trim();
 
-//         const tg = window.Telegram.WebApp;
-
-// // Send data to the bot
-//             tg.sendData(JSON.stringify(requestData));
-//         // console.log(JSON.stringify(requestData, null, 2));
-
-//         // alert("Data logged to console!");
-//     });
+            // Set the author field with user's full name
+            document.getElementById('author-name').value = fullName;
+        } else {
+            console.log("No user data available.");
+        }
+    } else {
+        console.error("Telegram WebApp object is not available.");
+    }
 
     document.getElementById("submitButton").addEventListener("click", function () {
         const tg = window.Telegram.WebApp;
