@@ -7,6 +7,12 @@
     <meta name="theme-color" content="#0088cc" />
     <title>Presentation Template Selector</title>
     <style>
+        .radio-explanation {
+            font-size: 14px;
+            color: #555;
+            margin-top: 8px;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -238,8 +244,13 @@
 
     <!-- Radio Buttons -->
     <div class="radio-group">
-        <label><input type="radio" name="type" value="standard" checked /> Standard 3000 so'm</label>
-        <label><input type="radio" name="type" value="premium" /> Premium 5000 so'm</label>
+        <label><input type="radio" name="type" value="standard" checked />
+             💎 Standart: 3000 so'm. 2022-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy malumotlar ko'p bolmagan mavzular uchun. Chuqurroq mavzularda tavsiya etilmaydi.
+        </label>
+        <br>
+        <label><input type="radio" name="type" value="premium" />
+            ⭐️ Premium: 5000 so'm. Matn sifati yaxshilangan, 2024-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy terminlarga boy taqdimotlar uchun. Tavsiya qilingan tarif.
+        </label>
     </div>
 
 
@@ -297,6 +308,27 @@
         console.error("Telegram WebApp object is not available.");
     }
 
+
+    Array.from(inputFields).forEach((input) => {
+        input.addEventListener("input", () => {
+            console.log("adjusting")
+            input.style.borderColor = ''; // Reset border
+        })
+    });
+
+    // Select all cards
+    const allDesignCards = document.querySelectorAll(".catalog .card");
+
+    // Add a click event listener to each card
+    allDesignCards.forEach(card => {
+        card.addEventListener("input", () => {
+            // Reset border color for all cards
+            allDesignCards.forEach(c => c.style.borderColor = '');
+
+            // Optionally, set the border color for the clicked card (e.g., highlight it)
+            card.style.borderColor = 'blue'; // Change to the color you want
+        });
+    });
     document.getElementById("submitButton").addEventListener("click", function () {
         const tg = window.Telegram.WebApp;
         // Get topic value
@@ -318,10 +350,16 @@
         // Validation for topic input
         if (!topic) {
             tg.showAlert("Iltmos taqdimot uchun to'liq va tushunarli bo'lgan mavzu kiriting !");
-            document.getElementById("topic").style.borderColor = 'red';
+            document.getElementById("author-name").style.borderColor = 'red';
             return;
         } else {
             document.getElementById("topic").style.borderColor = ''; // Reset border
+        }
+
+        if (!authorFullName) {
+            tg.showAlert("Iltmos , taqdimot muallifini ismi yoki familiyasini kiriting");
+            document.getElementById("topic").style.borderColor = 'red';
+            return;
         }
 
         // Validation for selected design
@@ -335,9 +373,10 @@
             allDesignCards.forEach(card => card.style.borderColor = ''); // Reset border
         }
 
+
         // Validation for type selection
         if (!type) {
-            tg.showAlert("Siz qaysi formatni ishlatishni tanlamadingiz, iltimos premium yoki standart tarifni tanlang");
+            tg.showAlert("Tarifni tanlamadingiz, iltimos premium yoki standart tarifni tanlang");
             return;
         }
 
