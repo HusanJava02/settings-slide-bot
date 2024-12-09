@@ -276,14 +276,18 @@
         });
     });
 
+
     if (window.Telegram && Telegram.WebApp) {
+        let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+
         // Access the user data
-        const user = Telegram.WebApp.WebAppUser
+        const user = tg.initDataUnsafe.user;
 
         // Check if user data is available
         if (user) {
             const fullName = `${user.first_name || ''} ${user.last_name || ''}`.trim();
 
+            console.log("Name of user" + fullName);
             // Set the author field with user's full name
             document.getElementById('author-name').value = fullName;
         } else {
@@ -298,6 +302,8 @@
         // Get topic value
         const topic = document.getElementById("topic").value.trim();
 
+        const authorFullName = document.getElementById("author-name").value.trim();
+        const selectedLanguage = document.getElementById("language").value.trim();
         // Get additional info value
         const additionalInfo = document.getElementById("additionalInfo").value.trim();
 
@@ -341,12 +347,15 @@
             additionalInfo,
             selectedDesign,
             type,
+            selectedLanguage,
+            authorFullName
         };
 
 
+        console.log(JSON.stringify(requestData, null, 2));
+
             // Send data to the bot
         tg.sendData(JSON.stringify(requestData));
-        // console.log(JSON.stringify(requestData, null, 2));
 
         // alert("Data logged to console!");
 
