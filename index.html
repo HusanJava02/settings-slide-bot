@@ -350,7 +350,7 @@
         // Validation for topic input
         if (!topic) {
             tg.showAlert("Iltmos taqdimot uchun to'liq va tushunarli bo'lgan mavzu kiriting !");
-            document.getElementById("author-name").style.borderColor = 'red';
+            document.getElementById("topic").style.borderColor = 'red';
             return;
         } else {
             document.getElementById("topic").style.borderColor = ''; // Reset border
@@ -358,7 +358,7 @@
 
         if (!authorFullName) {
             tg.showAlert("Iltmos , taqdimot muallifini ismi yoki familiyasini kiriting");
-            document.getElementById("topic").style.borderColor = 'red';
+            document.getElementById("author-name").style.borderColor = 'red';
             return;
         }
 
