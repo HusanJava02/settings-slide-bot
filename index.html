@@ -323,7 +323,7 @@
         const authorFullName = document.getElementById("author-name").value.trim();
         const selectedLanguage = document.getElementById("language").value.trim();
         // Get additional info value
-        const additionalInfo = document.getElementById("additionalInfo").value.trim();
+        // const additionalInfo = document.getElementById("additionalInfo").value.trim();
 
         // Get selected design from catalog
         const selectedDesignElement = document.querySelector(".catalog .card.selected img");
@@ -369,7 +369,6 @@
         // Create the request data object
         const requestData = {
             topic,
-            additionalInfo,
             selectedDesign,
             type,
             selectedLanguage,
