@@ -268,8 +268,10 @@
 
         let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
 
-        // Access the user data
-        const user = tg.initDataUnsafe.user;
+
+        const initData = tg.initData;
+        const user = JSON.parse(atob(initData.split('.')[1])); // Decode JWT payload
+
         console.log(user)
         console.log(tg)
 
