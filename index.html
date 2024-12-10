@@ -241,17 +241,20 @@
             </div>
         </div>
     </div>
-
     <!-- Radio Buttons -->
     <div class="radio-group">
-        <label><input type="radio" name="type" value="standard" checked />
-             💎 Standart: 3000 so'm. 2022-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy malumotlar ko'p bolmagan mavzular uchun. Chuqurroq mavzularda tavsiya etilmaydi.
+        <label>
+            <input type="radio" name="type" value="standard" checked />
+            💎 <strong>Standart:</strong>  3000 so'm. 2022-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy ma'lumotlar ko'p bo'lmagan mavzular uchun. Chuqurroq mavzularda tavsiya etilmaydi.
         </label>
         <br>
-        <label><input type="radio" name="type" value="premium" />
-            ⭐️ Premium: 5000 so'm. Matn sifati yaxshilangan, 2024-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy terminlarga boy taqdimotlar uchun. Tavsiya qilingan tarif.
+        <label>
+            <input type="radio" name="type" value="premium" />
+            ⭐️ <strong>Premium:</strong>
+            5000 so'm. Matn sifati yaxshilangan, 2024-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy terminlarga boy taqdimotlar uchun. Tavsiya qilingan tarif.
         </label>
     </div>
+
 
 
     <!-- Submit Button -->
@@ -261,6 +264,27 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const catalog = document.getElementById("catalog");
+
+
+        let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
+
+        // Access the user data
+        const user = tg.initDataUnsafe.user;
+        console.log(user)
+        console.log(tg)
+
+        // Check if user data is available
+        if (user) {
+            const fullName = `${user.first_name || ''} ${user.last_name || ''}`.trim();
+
+            console.log("Name of user" + fullName);
+            // Set the author field with user's full name
+            document.getElementById('author-name').value = fullName;
+        } else {
+            console.log("No user data available.");
+        }
+
+
 
         // Add click event listener to the catalog container
         catalog.addEventListener("click", (event) => {
@@ -288,33 +312,6 @@
     });
 
 
-    if (window.Telegram && Telegram.WebApp) {
-        let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
-
-        // Access the user data
-        const user = tg.initDataUnsafe.user;
-
-        // Check if user data is available
-        if (user) {
-            const fullName = `${user.first_name || ''} ${user.last_name || ''}`.trim();
-
-            console.log("Name of user" + fullName);
-            // Set the author field with user's full name
-            document.getElementById('author-name').value = fullName;
-        } else {
-            console.log("No user data available.");
-        }
-    } else {
-        console.error("Telegram WebApp object is not available.");
-    }
-
-
-    Array.from(inputFields).forEach((input) => {
-        input.addEventListener("input", () => {
-            console.log("adjusting")
-            input.style.borderColor = ''; // Reset border
-        })
-    });
 
     // Select all cards
     const allDesignCards = document.querySelectorAll(".catalog .card");
