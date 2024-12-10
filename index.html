@@ -172,14 +172,14 @@
     </div>
 
 
-    <!-- Additional Information -->
-    <div class="input-field">
-        <textarea id="additionalInfo" rows="3" placeholder="Enter additional information (optional)"></textarea>
-        <label for="topic" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">
-            Ushbu maydonda taqdimotni boyitish uchun o'zingizning ma'lumotlarini tashlashingiz mumkin, Yoki qo'shimcha
-            instruksiya berish orqali mukammal taqdimot yaratishingiz mumkin.
-        </label>
-    </div>
+<!--    &lt;!&ndash; Additional Information &ndash;&gt;-->
+<!--    <div class="input-field">-->
+<!--        <textarea id="additionalInfo" rows="3" placeholder="Enter additional information (optional)"></textarea>-->
+<!--        <label for="topic" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">-->
+<!--            Ushbu maydonda taqdimotni boyitish uchun o'zingizning ma'lumotlarini tashlashingiz mumkin, Yoki qo'shimcha-->
+<!--            instruksiya berish orqali mukammal taqdimot yaratishingiz mumkin.-->
+<!--        </label>-->
+<!--    </div>-->
 
     <!-- Language Selector -->
     <div class="input-field">
@@ -263,7 +263,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const catalog = document.getElementById("catalog");
+            const catalog = document.getElementById("catalog");
 
 
         let tg = window.Telegram.WebApp; //получаем объект webapp телеграма
@@ -315,20 +315,6 @@
     });
 
 
-
-    // Select all cards
-    const allDesignCards = document.querySelectorAll(".catalog .card");
-
-    // Add a click event listener to each card
-    allDesignCards.forEach(card => {
-        card.addEventListener("input", () => {
-            // Reset border color for all cards
-            allDesignCards.forEach(c => c.style.borderColor = '');
-
-            // Optionally, set the border color for the clicked card (e.g., highlight it)
-            card.style.borderColor = 'blue'; // Change to the color you want
-        });
-    });
     document.getElementById("submitButton").addEventListener("click", function () {
         const tg = window.Telegram.WebApp;
         // Get topic value
