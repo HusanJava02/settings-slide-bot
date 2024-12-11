@@ -72,7 +72,8 @@
 <body>
 <div class="container">
   <h2 id="user-full-name"></h2>
-  <h2 id="current balance"></h2>
+  <h2 id="current-balance"></h2>
+  <h2 id="trn-id"></h2>
 
   <div class="input-field">
     <input
@@ -98,11 +99,14 @@
     const firstName = urlParams.get('firstName') || '';
     const lastName = urlParams.get('lastName') || '';
     const balance = urlParams.get('currentBalance') || '';
+    const trnId = urlParams.get('trnId') || '';
     const fullName = `${firstName} ${lastName}`.trim();
     const userNameElement = document.getElementById("user-full-name");
-    const currentBalanceElement = document.getElementById("current balance");
+    const currentBalanceElement = document.getElementById("current-balance");
+    const trnIdElement = document.getElementById("trnId")
     userNameElement.textContent = 'Foydalanuvchi : '+fullName;
     currentBalanceElement.textContent = 'Foydalanuvchining hozrgi balansi : ' + balance;
+    trnIdElement.textContent = 'tranzaksiya id si : ' + trnId;
   });
 
 
