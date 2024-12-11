@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://telegram.org/js/telegram-web-app.js?56"></script>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="theme-color" content="#0088cc"/>
+  <title>Presentation Template Selector</title>
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
+    }
+
+    .container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+    .input-field input,
+    .input-field textarea, .input-field select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #005f8d;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2 id="user-full-name"></h2>
+  <h2 id="current balance"></h2>
+
+  <div class="input-field">
+    <input
+            type="number"
+            id="summa"
+            placeholder="Summa kiriting?"
+            required
+            min="0"
+            step="100000"
+    />
+    <label for="summa" style="font-size: 12px; color: #888; margin-top: 5px; display: block;">
+      Bu yerga summani kiriting
+    </label>
+  </div>
+
+  <!-- Submit Button -->
+  <button id="submitButton">Submit</button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const firstName = urlParams.get('firstName') || '';
+    const lastName = urlParams.get('lastName') || '';
+    const balance = urlParams.get('currentBalance') || '';
+    const fullName = `${firstName} ${lastName}`.trim();
+    const userNameElement = document.getElementById("user-full-name");
+    const currentBalanceElement = document.getElementById("current balance");
+    userNameElement.textContent = 'Foydalanuvchi : '+fullName;
+    currentBalanceElement.textContent = 'Foydalanuvchining hozrgi balansi : ' + balance;
+  });
+
+
+  document.getElementById("submitButton").addEventListener("click", function () {
+    const tg = window.Telegram.WebApp;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const chatId = urlParams.get('chatId') || '';
+    // Get topic value
+    const summa = document.getElementById("summa").value.trim();
+
+
+
+    // Create the request data object
+    const requestData = {
+      summa,
+      chatId
+    };
+
+
+    console.log(JSON.stringify(requestData, null, 2));
+
+    // Send data to the bot
+    tg.sendData(JSON.stringify(requestData));
+  });
+
+
+</script>
+</body>
+</html>
