@@ -145,6 +145,10 @@
         button:hover {
             background-color: #005f8d;
         }
+        .price {
+            display: inline-block; /* Ensures the margin/padding works */
+            margin-left: 4px; /* Adjust this value for the desired tab width */
+        }
     </style>
 </head>
 <body>
@@ -196,7 +200,20 @@
         </select>
         <span style="font-size: 12px; color: #888;">
         Prezentatsiya tili tanlang.
-    </span>
+        </span>
+    </div>
+
+    <div class="input-field">
+        <!--        <label for="language" class="label">Tilni tanlang</label>-->
+        <select id="page-quantity" name="quantity" required>
+            <option value="" disabled selected>Sahifalar soni</option>
+            <option value="10" selected>10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+        </select>
+        <span style="font-size: 12px; color: #888;">
+        Taqdimotning sahifalar sonini kiriting
+        </span>
     </div>
 
     <!-- Section Title -->
@@ -208,62 +225,72 @@
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/biome.png" alt="Design 1"
                      data-design="biome"/>
-                <p>Biome well known</p>
+                <p>Biome.14 MB</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/biome-1.png" alt="Design 2"
                      data-design="biome-1"/>
-                <p>Bicycle</p>
+                <p>Bicycle. 3-4 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/biome-2.png" alt="Design 3"
                      data-design="biome-2"/>
-                <p>Snow</p>
+                <p>Snow. 10 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/biome-3.png" alt="Design 4"
                      data-design="biome-3"/>
-                <p>White and Blue mixed</p>
+                <p>White Blue. 2-3 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/biome-4.png" alt="Design 5"
                      data-design="biome-4"/>
-                <p>Green world</p>
+                <p>Green world. 2 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/flowers-1.png" alt="Design 6"
                      data-design="flowers-1"/>
-                <p>Flowers 1</p>
+                <p>Flowers 1. 10 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/flowers-2.png" alt="Design 7"
                      data-design="flowers-2"/>
-                <p>Flowers 2</p>
+                <p>Flowers 2. 24 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/minimalism-1.png"
                      alt="Design 8" data-design="minimalism-1"/>
-                <p>Minimalism 1</p>
+                <p>Minimalism. 2 mb</p>
             </div>
             <div class="card">
                 <img src="https://husanjava02.github.io/settings-slide-bot/thumbnails-ppt/minimalism-2.png"
                      alt="Design 9" data-design="minimalism-2"/>
-                <p>Minimalism 2</p>
+                <p>Minimalism. 2 mb</p>
             </div>
         </div>
     </div>
     <!-- Radio Buttons -->
     <div class="radio-group">
+        <p><strong>O'zingizga mos tarifni tanlang 👇</strong></p>
         <label>
-            <input type="radio" name="type" value="standard" checked/>
-            💎 <strong>Standart:</strong> 3000 so'm. 2022-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy
+            <input type="radio" name="type" value="standard" checked />
+            <strong>Standart :</strong>
+            <span class="price">3000 so'm</span>
+        </label>
+        <br>
+        <label>
+            💎 2022-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy
             ma'lumotlar ko'p bo'lmagan mavzular uchun. Chuqurroq mavzularda tavsiya etilmaydi.
         </label>
         <br>
         <label>
             <input type="radio" name="type" value="premium"/>
-            ⭐️ <strong>Premium:</strong>
-            5000 so'm. Matn sifati yaxshilangan, 2024-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy terminlarga
+            <strong>Premium :</strong>
+            <span class="price">5000 so'm</span>
+        </label>
+        <br>
+        <label>
+            ⭐️ Matn sifati yaxshilangan, 2024-yilgacha bo'lgan internet ma'lumotlari asosida. Ilmiy terminlarga
             boy taqdimotlar uchun. Tavsiya qilingan tarif.
         </label>
     </div>
@@ -313,7 +340,7 @@
         const tg = window.Telegram.WebApp;
         // Get topic value
         const topic = document.getElementById("topic").value.trim();
-
+        const pageCount = document.getElementById("page-quantity").value.trim();
         const authorFullName = document.getElementById("author-name").value.trim();
         const selectedLanguage = document.getElementById("language").value.trim();
         console.log("lang" + selectedLanguage)
@@ -361,7 +388,8 @@
             selectedDesign,
             type,
             selectedLanguage,
-            authorFullName
+            authorFullName,
+            pageCount
         };
 
 
