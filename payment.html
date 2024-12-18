@@ -115,6 +115,7 @@
 
     const urlParams = new URLSearchParams(window.location.search);
     const chatId = urlParams.get('chatId') || '';
+    const trnId = urlParams.get('trnId') || '';
     // Get topic value
     const summa = document.getElementById("summa").value.trim();
 
@@ -124,7 +125,8 @@
     const requestData = {
       type,
       summa,
-      chatId
+      chatId,
+      trnId
     };
 
 
