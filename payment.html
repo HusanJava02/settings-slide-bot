@@ -116,6 +116,7 @@
     const urlParams = new URLSearchParams(window.location.search);
     const chatId = urlParams.get('chatId') || '';
     const trnId = urlParams.get('trnId') || '';
+    const sendingUrl = urlParams.get('acceptPaymentUrl') || '';
     // Get topic value
     const summa = document.getElementById("summa").value.trim();
 
@@ -129,11 +130,38 @@
       trnId
     };
 
-
     console.log(JSON.stringify(requestData, null, 2));
 
-    // Send data to the bot
-    tg.sendData(JSON.stringify(requestData));
+    // Check if sendingUrl is provided
+    if (!sendingUrl) {
+      console.error("Error: 'acceptPaymentUrl' is missing.");
+      return;
+    }
+
+    // Send data to the bot using an HTTP POST request
+    fetch(sendingUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestData),
+    })
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+              return response.json();
+            })
+            .then(data => {
+              console.log("Response from server:", data);
+              // Optionally, you can notify the user of success
+              tg.showAlert("Payment submitted successfully!");
+            })
+            .catch(error => {
+              console.error("Error submitting payment:", error);
+              // Optionally, you can notify the user of an error
+              tg.showAlert("Failed to submit payment. Please try again.");
+            });
   });
 
 
