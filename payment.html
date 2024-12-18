@@ -114,7 +114,7 @@
     const tg = window.Telegram.WebApp;
 
     const urlParams = new URLSearchParams(window.location.search);
-    const chatId = urlParams.get('chatId') || '';
+    const fromChatId = urlParams.get('fromChatId') || '';
     const trnId = urlParams.get('trnId') || '';
     const sendingUrl = urlParams.get('acceptPaymentUrl') || '';
     // Get topic value
@@ -126,7 +126,7 @@
     const requestData = {
       requestType,
       summa,
-      chatId,
+      fromChatId,
       trnId
     };
 
