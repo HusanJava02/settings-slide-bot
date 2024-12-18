@@ -118,10 +118,11 @@
     // Get topic value
     const summa = document.getElementById("summa").value.trim();
 
-
+    const type = "PaymentSubmit";
 
     // Create the request data object
     const requestData = {
+      type,
       summa,
       chatId
     };
