@@ -156,6 +156,7 @@
               console.log("Response from server:", data);
               // Optionally, you can notify the user of success
               tg.showAlert("Payment submitted successfully!");
+              tg.close();
             })
             .catch(error => {
               console.error("Error submitting payment:", error);
