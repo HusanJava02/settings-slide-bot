@@ -386,8 +386,10 @@
             return;
         }
 
+        const requestType = "CreateSlideRequest";
         // Create the request data object
         const requestData = {
+            requestType,
             topic,
             selectedDesign,
             type,
